@@ -1,0 +1,6 @@
+com.hanxing.kxcharge.framework.apilog.config.KxchargeApiLogAutoConfiguration
+com.hanxing.kxcharge.framework.jackson.config.KxchargeJacksonAutoConfiguration
+com.hanxing.kxcharge.framework.swagger.config.KxchargeSwaggerAutoConfiguration
+com.hanxing.kxcharge.framework.web.config.KxchargeWebAutoConfiguration
+com.hanxing.kxcharge.framework.apilog.config.KxchargeApiLogRpcAutoConfiguration
+com.hanxing.kxcharge.framework.banner.config.KxchargeBannerAutoConfiguration

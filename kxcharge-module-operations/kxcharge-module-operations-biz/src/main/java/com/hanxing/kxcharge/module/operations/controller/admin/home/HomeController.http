@@ -1,0 +1,26 @@
+GET {{baseUrl}}/operations/home/timeDistribution?type=1
+Authorization: Bearer {{token}}
+tenant-id: {{adminTenentId}}
+tag: ZhengKX-win10
+
+###
+GET {{baseUrl}}/operations/home/terminalOperationData?type=3
+Authorization: Bearer {{token}}
+tenant-id: {{adminTenentId}}
+tag: ZhengKX-win10
+
+###
+GET {{baseUrl}}/operations/home/gunData
+Authorization: Bearer {{token}}
+tenant-id: {{adminTenentId}}
+tag: ZhengKX-win10
+
+###
+
+#=======
+GET {{baseUrl}}/operations/home/chargeData
+Authorization: Bearer {{token}}
+tenant-id: {{adminTenentId}}
+tag: ZhengKX-win10
+
+

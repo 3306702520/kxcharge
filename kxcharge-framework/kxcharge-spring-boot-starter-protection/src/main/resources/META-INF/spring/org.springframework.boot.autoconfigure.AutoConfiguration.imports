@@ -1,0 +1,4 @@
+com.hanxing.kxcharge.framework.idempotent.config.KxchargeIdempotentConfiguration
+com.hanxing.kxcharge.framework.lock4j.config.KxchargeLock4jConfiguration
+com.hanxing.kxcharge.framework.ratelimiter.config.KxchargeRateLimiterConfiguration
+com.hanxing.kxcharge.framework.signature.config.KxchargeApiSignatureAutoConfiguration

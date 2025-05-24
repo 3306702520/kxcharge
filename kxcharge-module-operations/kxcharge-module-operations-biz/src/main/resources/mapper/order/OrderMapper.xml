@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanxing.kxcharge.module.operations.dal.mysql.order.OrderMapper">
+
+    <!--
+        一般情况下，尽可能使用 Mapper 进行 CRUD 增删改查即可。
+        无法满足的场景，例如说多表关联查询，才使用 XML 编写 SQL。
+        代码生成器暂时只生成 Mapper XML 文件本身，更多推荐 MybatisX 快速开发插件来生成查询。
+        文档可见：https://www.iocoder.cn/MyBatis/x-plugins/
+     -->
+
+    <update id="updateChargeState">
+        update operations_order set charge_status = #{newState}
+        where seq_number = #{seqNumber} and gun_id = #{gunCode} and charge_status = #{oldState}
+    </update>
+
+    <update id="updateBySoc">
+        update operations_order set start_soc = IFNULL(start_soc, #{soc}) , end_soc = #{soc}
+        where seq_number = #{seqNumber}
+    </update>
+
+    <select id="chargeData"
+            resultType="com.hanxing.kxcharge.module.operations.controller.admin.home.vo.ChargeDataRespVo">
+        SELECT
+            SUM(CASE WHEN DATE(end_time) = CURDATE() THEN charged_power ELSE 0 END) AS todayChargedPower,
+            SUM(CASE WHEN DATE(end_time) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN charged_power ELSE 0 END) AS yesterdayChargedPower,
+            COUNT(CASE WHEN DATE(end_time) = CURDATE() THEN 1 END) AS todayOrderCount,
+            COUNT(CASE WHEN DATE(end_time) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN 1 END) AS yesterdayOrderCount,
+            SUM(CASE WHEN DATE(end_time) = CURDATE() THEN in_pay ELSE 0 END) AS todayOrderReceivableAmount,
+            SUM(CASE WHEN DATE(end_time) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN in_pay ELSE 0 END) AS yesterdayOrderReceivableAmount,
+            SUM(CASE WHEN DATE(end_time) = CURDATE() THEN charged_amount ELSE 0 END) AS todayOrderReceivableElectricity,
+            SUM(CASE WHEN DATE(end_time) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN charged_amount ELSE 0 END) AS yesterdayOrderReceivableElectricity,
+            SUM(CASE WHEN DATE(end_time) = CURDATE() THEN in_pay - charged_amount ELSE 0 END) AS todayOrderReceivableService,
+            SUM(CASE WHEN DATE(end_time) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) THEN in_pay - charged_amount ELSE 0 END) AS yesterdayOrderReceivableService
+        FROM
+            operations_order
+        where order_status = 4;
+    </select>
+    <select id="selectListByToday"
+            resultType="com.hanxing.kxcharge.module.operations.controller.admin.home.vo.TerminalOperationDataRespVo">
+        SELECT
+            DATE_FORMAT(end_time, '%H:00~%H:59') AS dateTime,
+            COUNT(*) AS orderCount,
+            SUM(all_amount) AS orderAmount,
+            SUM(charged_power) AS chargedPower
+        FROM
+            operations_order
+        WHERE
+        order_status = 4 and
+        <if test="type == 1">
+            DATE(end_time) = CURDATE()
+        </if>
+        <if test="type == 2">
+            DATE(end_time) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+        </if>
+
+        GROUP BY
+            DATE_FORMAT(end_time, '%H')
+        ORDER BY
+            DATE_FORMAT(end_time, '%H')
+    </select>
+    <select id="selectListByMonth"
+            resultType="com.hanxing.kxcharge.module.operations.controller.admin.home.vo.TerminalOperationDataRespVo">
+        SELECT
+            DATE(end_time) AS dateTime,
+            COUNT(*) AS orderCount,
+            SUM(all_amount) AS orderAmount,
+            SUM(charged_power) AS chargedPower
+        FROM
+            operations_order
+        WHERE
+            order_status = 4 and
+            DATE(end_time) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+        GROUP BY
+            DATE(end_time)
+        ORDER BY
+            DATE(end_time)
+    </select>
+    <select id="selectListByYear"
+            resultType="com.hanxing.kxcharge.module.operations.controller.admin.home.vo.TerminalOperationDataRespVo">
+        SELECT
+            DATE_FORMAT(end_time, '%Y-%m') AS dateTime,
+            COUNT(id) AS orderCount,
+            SUM(all_amount) AS orderAmount,
+            SUM(charged_power) AS chargedPower
+        FROM
+            operations_order
+        WHERE
+            order_status = 4 and
+            DATE(end_time) >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+        GROUP BY
+            DATE_FORMAT(end_time, '%Y-%m')
+        ORDER BY
+            DATE_FORMAT(end_time, '%Y-%m')
+    </select>
+</mapper>

@@ -1,0 +1,40 @@
+### 请求 /order 接口 => 成功
+POST {{baseUrl}}/operations/backGroundProcess/order
+Content-Type: application/json
+Authorization: Bearer {{token}}
+tenant-id: {{adminTenentId}}
+
+{
+  "transactionSerialNo": "32010699286805012402131456231036",
+  "pileCode": "32010699286805",
+  "gunNo": "01",
+  "startTime": 1707807511000,
+  "endTime": 1707817636000,
+  "sharpUnitPrice": 1.0635,
+  "sharpCharge": 0,
+  "calculationOfPeakPowerLoss": 0,
+  "sharpAmount": 0,
+  "peakUnitPrice": 0.99,
+  "peakPower": 19.08,
+  "peakPowerLossCalculation": 0,
+  "peakAmount": 18.8892,
+  "flatUnitPrice": 0.74,
+  "averageElectricQuantity": 0.17,
+  "lossLevelingElectricity": 0,
+  "flatAmount": 0.1258,
+  "valleyUnitPrice": 0.47,
+  "valleyPower": 0,
+  "lossValleyElectricity": 0,
+  "valleyAmount": 0,
+  "totalStartingValueOfElectricityMeter": 218.61,
+  "totalStopValueOfElectricityMeter": 237.86,
+  "totalElectricity": 19.25,
+  "totalElectricityLossCalculation": 0,
+  "consumptionAmount": 19.015,
+  "uniqueIdentificationOfElectricVehicles": "0000000000000000000000000000000000",
+  "transactionID": "01",
+  "transactionDate": 1707817645000,
+  "stoppingReason": "40",
+  "physicalCardNo": "1234567890123456"
+}
+

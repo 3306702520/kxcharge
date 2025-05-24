@@ -1,0 +1,3 @@
+com.hanxing.kxcharge.framework.datapermission.config.KxchargeDataPermissionAutoConfiguration
+com.hanxing.kxcharge.framework.datapermission.config.KxchargeDeptDataPermissionAutoConfiguration
+com.hanxing.kxcharge.framework.datapermission.config.KxchargeDataPermissionRpcAutoConfiguration

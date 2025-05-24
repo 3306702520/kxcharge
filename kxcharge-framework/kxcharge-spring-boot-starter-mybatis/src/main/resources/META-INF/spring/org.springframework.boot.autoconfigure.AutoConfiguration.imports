@@ -1,0 +1,3 @@
+com.hanxing.kxcharge.framework.datasource.config.KxchargeDataSourceAutoConfiguration
+com.hanxing.kxcharge.framework.mybatis.config.KxchargeMybatisAutoConfiguration
+com.hanxing.kxcharge.framework.translate.config.KxchargeTranslateAutoConfiguration

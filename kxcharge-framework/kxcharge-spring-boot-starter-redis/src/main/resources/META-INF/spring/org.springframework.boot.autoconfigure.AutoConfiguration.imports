@@ -1,0 +1,2 @@
+com.hanxing.kxcharge.framework.redis.config.KxchargeRedisAutoConfiguration
+com.hanxing.kxcharge.framework.redis.config.KxchargeCacheAutoConfiguration

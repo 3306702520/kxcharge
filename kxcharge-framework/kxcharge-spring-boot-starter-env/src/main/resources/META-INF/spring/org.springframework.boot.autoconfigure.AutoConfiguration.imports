@@ -1,0 +1,2 @@
+com.hanxing.kxcharge.framework.env.config.KxchargeEnvWebAutoConfiguration
+com.hanxing.kxcharge.framework.env.config.KxchargeEnvRpcAutoConfiguration

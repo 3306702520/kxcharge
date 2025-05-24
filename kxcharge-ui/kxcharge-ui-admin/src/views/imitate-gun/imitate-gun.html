@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模拟枪</title>
+  </head>
+  <body> 
+    <!-- 仅用于模拟枪的插拔 -->
+    <div>
+      <span>请求地址：<input type="text" style="width: 250px; height: 30px;" placeholder="请输入请求地址" id="url"></span>
+      <span>10.0.1.163:48091  test环境 </span>
+      <span>10.0.5.121:48091  dev环境</span>
+    </div>
+    <div>--------------------------------------------------------------------------------------------------</div>
+    <input type="text" style="width: 250px; height: 30px;" placeholder="请输入模拟枪编号" id="gun">
+    <button style="width: 80px; height: 30px;" id="insertGun">插枪</button>
+    <button style="width: 80px; height: 30px;" id="drawGun">拔枪</button>
+    <span>提示： <span id="tips"></span></span>
+    <div>--------------------------------------------------------------------------------------------------</div>
+    <!-- <div style="margin-bottom: 10px;">
+      <span>类型：<input type="text" style="width: 250px; height: 30px;" id="type"></span>
+    </div> -->
+    <div style="margin-bottom: 10px;">
+      <span>内容：<textarea name="content" id="content" cols="30" rows="10"></textarea> </span>
+    </div>
+    <button style="width: 80px; height: 30px;" id="occur">发送</button>
+    <span>提示： <span id="tiptools"></span></span>
+
+  </body>
+  <script>
+    var xhr = new XMLHttpRequest();
+    document.getElementById('insertGun').addEventListener('click', () => {
+      const gunCode = document.getElementById('gun').value
+      getGunStatus(gunCode, '01')
+    })
+    document.getElementById('drawGun').addEventListener('click', () => {
+      const gunCode = document.getElementById('gun').value
+      getGunStatus(gunCode, '02')
+
+    })
+
+    document.getElementById('occur').addEventListener('click', () => {
+      const content = document.getElementById('content').value
+      postContent(content)
+    })
+
+    function getGunStatus(code, status) {
+      const url = document.getElementById('url').value
+      xhr.open('GET', `http://${url}/deviceInfo/updateGunStatus?connectorCode=${code}&statusIn=${status}`, true);
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            document.getElementById('tips').innerText = '操作成功'
+          } else {
+            // console.error('Error:', xhr.status);
+            const errDetail = JSON.parse(xhr.responseText || '{}')
+            document.getElementById('tips').innerText = errDetail.detail
+          }
+        }
+      };
+      xhr.send();
+    }
+
+    function postContent(body) {
+      const url = document.getElementById('url').value
+
+      xhr.open('POST', `http://${url}/deviceInfo/simulateDate`, true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          console.log(`output->xhr`,xhr)
+          if (xhr.status === 200) {
+            document.getElementById('tiptools').innerText = xhr.response
+          } else {
+            // console.error('Error:', xhr.status);
+            const errDetail = JSON.parse(xhr.responseText || '{}')
+            document.getElementById('tiptools').innerText = errDetail.detail
+          }
+        }
+      };
+      xhr.send(body);
+    }
+  </script>
+</html>

@@ -1,0 +1,2 @@
+com.hanxing.kxcharge.framework.tracer.config.KxchargeTracerAutoConfiguration
+com.hanxing.kxcharge.framework.tracer.config.KxchargeMetricsAutoConfiguration

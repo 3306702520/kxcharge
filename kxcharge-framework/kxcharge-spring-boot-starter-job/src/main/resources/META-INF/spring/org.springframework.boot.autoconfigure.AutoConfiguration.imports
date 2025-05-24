@@ -1,0 +1,2 @@
+com.hanxing.kxcharge.framework.quartz.config.KxchargeXxlJobAutoConfiguration
+com.hanxing.kxcharge.framework.quartz.config.KxchargeAsyncAutoConfiguration

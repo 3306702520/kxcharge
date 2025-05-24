@@ -1,0 +1,3 @@
+com.hanxing.kxcharge.framework.mq.redis.config.KxchargeRedisMQProducerAutoConfiguration
+com.hanxing.kxcharge.framework.mq.redis.config.KxchargeRedisMQConsumerAutoConfiguration
+com.hanxing.kxcharge.framework.mq.rabbitmq.config.KxchargeRabbitMQAutoConfiguration

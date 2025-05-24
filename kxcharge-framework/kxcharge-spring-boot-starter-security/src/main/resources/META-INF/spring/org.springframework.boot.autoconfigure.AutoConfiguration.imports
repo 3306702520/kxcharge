@@ -1,0 +1,5 @@
+com.hanxing.kxcharge.framework.security.config.KxchargeSecurityRpcAutoConfiguration
+com.hanxing.kxcharge.framework.security.config.KxchargeSecurityAutoConfiguration
+com.hanxing.kxcharge.framework.security.config.KxchargeWebSecurityConfigurerAdapter
+com.hanxing.kxcharge.framework.operatelog.config.KxchargeOperateLogConfiguration
+com.hanxing.kxcharge.framework.operatelog.config.KxchargeOperateLogRpcAutoConfiguration
