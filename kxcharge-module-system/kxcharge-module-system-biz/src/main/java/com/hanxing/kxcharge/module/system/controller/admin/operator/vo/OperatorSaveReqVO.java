@@ -1,10 +1,8 @@
 package com.hanxing.kxcharge.module.system.controller.admin.operator.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import javax.validation.constraints.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Schema(description = "管理后台 - 运营商新增/修改 Request VO")

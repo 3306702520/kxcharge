@@ -1,37 +1,35 @@
 package com.hanxing.kxcharge.module.system.controller.admin.operator;
 
-import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.security.access.prepost.PreAuthorize;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Operation;
-
-import javax.validation.constraints.*;
-import javax.validation.*;
-import javax.servlet.http.*;
-import java.util.*;
-import java.io.IOException;
-
+import com.hanxing.kxcharge.framework.apilog.core.annotation.ApiAccessLog;
+import com.hanxing.kxcharge.framework.common.pojo.CommonResult;
 import com.hanxing.kxcharge.framework.common.pojo.PageParam;
 import com.hanxing.kxcharge.framework.common.pojo.PageResult;
-import com.hanxing.kxcharge.framework.common.pojo.CommonResult;
 import com.hanxing.kxcharge.framework.common.util.object.BeanUtils;
-import static com.hanxing.kxcharge.framework.common.pojo.CommonResult.success;
-
 import com.hanxing.kxcharge.framework.excel.core.util.ExcelUtils;
-
-import com.hanxing.kxcharge.framework.apilog.core.annotation.ApiAccessLog;
-import static com.hanxing.kxcharge.framework.apilog.core.enums.OperateTypeEnum.*;
-
-import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.*;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorPageReqVO;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorRespVO;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorSaveReqVO;
 import com.hanxing.kxcharge.module.system.dal.dataobject.operator.OperatorDO;
 import com.hanxing.kxcharge.module.system.service.operator.OperatorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.List;
+
+import static com.hanxing.kxcharge.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
+import static com.hanxing.kxcharge.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 运营商")
 @RestController
-@RequestMapping("/system/operator")
+@RequestMapping("/system/operations")
 @Validated
 public class OperatorController {
 
@@ -69,6 +67,14 @@ public class OperatorController {
     public CommonResult<OperatorRespVO> getOperator(@RequestParam("id") Long id) {
         OperatorDO operator = operatorService.getOperator(id);
         return success(BeanUtils.toBean(operator, OperatorRespVO.class));
+    }
+
+    @GetMapping("/listAll")
+    @Operation(summary = "获得所有运营商列表")
+    public CommonResult<List<OperatorRespVO>> getOperatorListAll() {
+        OperatorRespVO operatorRespVO = new OperatorRespVO();
+        List<OperatorDO> list = operatorService.getOperatorList(operatorRespVO);
+        return success(BeanUtils.toBean(list, OperatorRespVO.class));
     }
 
     @GetMapping("/page")

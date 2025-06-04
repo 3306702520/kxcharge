@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -51,6 +52,10 @@ public class TenantController {
     @Parameter(name = "website", description = "域名", required = true, example = "www.iocoder.cn")
     public CommonResult<TenantSimpleRespVO> getTenantByWebsite(@RequestParam("website") String website) {
         TenantDO tenant = tenantService.getTenantByWebsite(website);
+        if (ObjectUtils.isEmpty(tenant)) {
+            //如果没查到租户，默认使用系统租户
+            tenant = tenantService.getTenant(1L);
+        }
         return success(BeanUtils.toBean(tenant, TenantSimpleRespVO.class));
     }
 

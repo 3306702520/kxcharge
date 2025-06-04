@@ -1,21 +1,20 @@
 package com.hanxing.kxcharge.module.system.service.operator;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.*;
-import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.*;
-import com.hanxing.kxcharge.module.system.dal.dataobject.operator.OperatorDO;
 import com.hanxing.kxcharge.framework.common.pojo.PageResult;
-import com.hanxing.kxcharge.framework.common.pojo.PageParam;
 import com.hanxing.kxcharge.framework.common.util.object.BeanUtils;
-
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorPageReqVO;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorRespVO;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorSaveReqVO;
+import com.hanxing.kxcharge.module.system.dal.dataobject.operator.OperatorDO;
 import com.hanxing.kxcharge.module.system.dal.mysql.operator.OperatorMapper;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 import static com.hanxing.kxcharge.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hanxing.kxcharge.module.system.enums.ErrorCodeConstants.*;
+import static com.hanxing.kxcharge.module.system.enums.ErrorCodeConstants.OPERATOR_NOT_EXISTS;
 
 /**
  * 运营商 Service 实现类
@@ -69,6 +68,11 @@ public class OperatorServiceImpl implements OperatorService {
     @Override
     public PageResult<OperatorDO> getOperatorPage(OperatorPageReqVO pageReqVO) {
         return operatorMapper.selectPage(pageReqVO);
+    }
+
+    @Override
+    public List<OperatorDO> getOperatorList(OperatorRespVO operatorRespVO) {
+        return operatorMapper.selectList(operatorRespVO);
     }
 
 }

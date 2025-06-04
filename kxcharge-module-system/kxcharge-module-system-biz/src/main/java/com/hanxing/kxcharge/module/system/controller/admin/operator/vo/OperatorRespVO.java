@@ -1,11 +1,14 @@
 package com.hanxing.kxcharge.module.system.controller.admin.operator.vo;
 
+import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
+import com.alibaba.excel.annotation.ExcelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
-import com.alibaba.excel.annotation.*;
+
+import static com.hanxing.kxcharge.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
 
 @Schema(description = "管理后台 - 运营商 Response VO")
 @Data
@@ -46,11 +49,13 @@ public class OperatorRespVO {
 
     @Schema(description = "签约开始时间")
     @ExcelProperty("签约开始时间")
-    private LocalDateTime signStartTime;
+    @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
+    private LocalDateTime[] signStartTime;
 
     @Schema(description = "签约结束时间")
     @ExcelProperty("签约结束时间")
-    private LocalDateTime signEndTime;
+    @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
+    private LocalDateTime[] signEndTime;
 
     @Schema(description = "企业图标")
     @ExcelProperty("企业图标")
@@ -90,6 +95,7 @@ public class OperatorRespVO {
 
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("创建时间")
-    private LocalDateTime createTime;
+    @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
+    private LocalDateTime[] createTime;
 
 }

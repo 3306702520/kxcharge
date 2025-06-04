@@ -1,11 +1,13 @@
 package com.hanxing.kxcharge.module.system.service.operator;
 
-import java.util.*;
-import javax.validation.*;
-import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.*;
-import com.hanxing.kxcharge.module.system.dal.dataobject.operator.OperatorDO;
 import com.hanxing.kxcharge.framework.common.pojo.PageResult;
-import com.hanxing.kxcharge.framework.common.pojo.PageParam;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorPageReqVO;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorRespVO;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorSaveReqVO;
+import com.hanxing.kxcharge.module.system.dal.dataobject.operator.OperatorDO;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 运营商 Service 接口
@@ -52,4 +54,10 @@ public interface OperatorService {
      */
     PageResult<OperatorDO> getOperatorPage(OperatorPageReqVO pageReqVO);
 
+    /**
+     * 运营商list
+     * @param operatorRespVO
+     * @return
+     */
+    List<OperatorDO> getOperatorList(OperatorRespVO operatorRespVO);
 }

@@ -1,13 +1,14 @@
 package com.hanxing.kxcharge.module.system.dal.mysql.operator;
 
-import java.util.*;
-
 import com.hanxing.kxcharge.framework.common.pojo.PageResult;
-import com.hanxing.kxcharge.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hanxing.kxcharge.framework.mybatis.core.mapper.BaseMapperX;
+import com.hanxing.kxcharge.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorPageReqVO;
+import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.OperatorRespVO;
 import com.hanxing.kxcharge.module.system.dal.dataobject.operator.OperatorDO;
 import org.apache.ibatis.annotations.Mapper;
-import com.hanxing.kxcharge.module.system.controller.admin.operator.vo.*;
+
+import java.util.List;
 
 /**
  * 运营商 Mapper
@@ -35,6 +36,24 @@ public interface OperatorMapper extends BaseMapperX<OperatorDO> {
                 .eqIfPresent(OperatorDO::getContactNum, reqVO.getContactNum())
                 .eqIfPresent(OperatorDO::getContactAddress, reqVO.getContactAddress())
                 .eqIfPresent(OperatorDO::getEmail, reqVO.getEmail())
+                .eqIfPresent(OperatorDO::getBusinessLicense, reqVO.getBusinessLicense())
+                .eqIfPresent(OperatorDO::getIsFrozen, reqVO.getIsFrozen())
+                .betweenIfPresent(OperatorDO::getCreateTime, reqVO.getCreateTime())
+                .orderByDesc(OperatorDO::getId));
+    }
+
+    default List<OperatorDO> selectList(OperatorRespVO reqVO) {
+        return selectList(new LambdaQueryWrapperX<OperatorDO>()
+                .likeIfPresent(OperatorDO::getOrgName, reqVO.getOrgName())
+                .likeIfPresent(OperatorDO::getCode, reqVO.getCode())
+                .likeIfPresent(OperatorDO::getContactUser, reqVO.getContactUser())
+                .eqIfPresent(OperatorDO::getCityCode, reqVO.getCityCode())
+                .eqIfPresent(OperatorDO::getProvinceCode, reqVO.getProvinceCode())
+                .likeIfPresent(OperatorDO::getCityName, reqVO.getCityName())
+                .betweenIfPresent(OperatorDO::getSignStartTime, reqVO.getSignStartTime())
+                .betweenIfPresent(OperatorDO::getSignEndTime, reqVO.getSignEndTime())
+                .eqIfPresent(OperatorDO::getBusinessLogo, reqVO.getBusinessLogo())
+                .eqIfPresent(OperatorDO::getRemark, reqVO.getRemark())
                 .eqIfPresent(OperatorDO::getBusinessLicense, reqVO.getBusinessLicense())
                 .eqIfPresent(OperatorDO::getIsFrozen, reqVO.getIsFrozen())
                 .betweenIfPresent(OperatorDO::getCreateTime, reqVO.getCreateTime())
