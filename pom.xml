@@ -17,6 +17,7 @@
         <module>kxcharge-module-member</module>
         <module>kxcharge-module-pay</module>
         <module>kxcharge-module-operations</module>
+        <module>kxcharge-module-pile</module>
     </modules>
 
     <name>${project.artifactId}</name>

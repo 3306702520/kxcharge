@@ -43,6 +43,13 @@
             <version>${revision}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.hanxing.boot</groupId>
+            <artifactId>kxcharge-module-pile-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.hanxing.boot</groupId>
             <artifactId>kxcharge-module-member-api</artifactId>
