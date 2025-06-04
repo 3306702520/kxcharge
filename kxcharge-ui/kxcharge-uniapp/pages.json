@@ -1,0 +1,289 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^s-(.*)": "@/sheep/components/s-$1/s-$1.vue",
+      "^su-(.*)": "@/sheep/ui/su-$1/su-$1.vue",
+      "^kx-(.*)": "@/sheep/components/kx-$1/index.vue"
+    }
+  },
+  "pages": [{
+      "path": "pages/redirect/index",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    }, {
+      "path": "pages/index/index",
+      "aliasPath": "/",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "enablePullDownRefresh": true
+      },
+      "meta": {
+        "auth": false,
+        "sync": true,
+        "title": "首页"
+      }
+    },
+    {
+      "path": "pages/order/index",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/my/index",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/station-detail/index",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/equipment-list/index",
+      "style": {
+        "navigationBarTitleText": "电站详情"
+      }
+    },
+    {
+      "path": "pages/price-details/price-details",
+      "style": {
+        "navigationBarTitleText": "电价详情"
+      }
+    },
+    {
+      "path": "pages/equipment-detail/index",
+      "style": {
+        "navigationBarTitleText": "开始充电"
+      }
+    },
+    {
+      "path": "pages/charging/index",
+      "style": {
+        "navigationBarTitleText": "正在充电"
+      }
+    },
+    {
+      "path": "pages/my-car/my-car",
+      "style": {
+        "navigationBarTitleText": "我的车辆"
+      }
+    },
+    {
+      "path": "pages/my-car/add-my-car/add-my-car",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/order-info/order-info",
+      "style": {
+        "navigationBarTitleText": "订单详情"
+      }
+    }
+  ],
+  "subPackages": [{
+    "root": "pages/public",
+    "pages": [{
+        "path": "setting",
+        "style": {
+          "navigationBarTitleText": "系统设置"
+        },
+        "meta": {
+          "sync": true,
+          "title": "系统设置",
+          "group": "通用"
+        }
+      },
+      {
+        "path": "richtext",
+        "style": {
+          "navigationBarTitleText": "富文本"
+        },
+        "meta": {
+          "sync": true,
+          "title": "富文本",
+          "group": "通用"
+        }
+      },
+      {
+        "path": "faq",
+        "style": {
+          "navigationBarTitleText": "常见问题"
+        },
+        "meta": {
+          "sync": true,
+          "title": "常见问题",
+          "group": "通用"
+        }
+      },
+      {
+        "path": "error",
+        "style": {
+          "navigationBarTitleText": "错误页面"
+        }
+      },
+      {
+        "path": "webview",
+        "style": {
+          "navigationBarTitleText": ""
+        }
+      },
+      {
+        "path": "association",
+        "style": {
+          "navigationBarTitleText": "合作联系"
+        },
+        "meta": {
+          "sync": true,
+          "title": "合作联系",
+          "group": "通用"
+        }
+      }
+    ]
+  }, {
+    "root": "pages/user",
+    "pages": [{
+        "path": "info",
+        "style": {
+          "navigationBarTitleText": "我的信息"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "用户信息",
+          "group": "用户中心"
+        }
+      },
+      {
+        "path": "goods-collect",
+        "style": {
+          "navigationBarTitleText": "我的收藏"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "商品收藏",
+          "group": "用户中心"
+        }
+      },
+      {
+        "path": "goods-log",
+        "style": {
+          "navigationBarTitleText": "我的足迹"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "浏览记录",
+          "group": "用户中心"
+        }
+      },
+      {
+        "path": "goods_details_store/index",
+        "style": {
+          "navigationBarTitleText": "自提门店"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "地址管理",
+          "group": "用户中心"
+        }
+      },
+      {
+        "path": "wallet/money",
+        "style": {
+          "navigationBarTitleText": "我的余额"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "用户余额",
+          "group": "用户中心"
+        }
+      },
+      {
+        "path": "wallet/score",
+        "style": {
+          "navigationBarTitleText": "我的积分"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "用户积分",
+          "group": "用户中心"
+        }
+      }
+    ]
+  }, {
+    "root": "pages/pay",
+    "pages": [{
+        "path": "index",
+        "style": {
+          "navigationBarTitleText": "收银台"
+        }
+      },
+      {
+        "path": "result",
+        "style": {
+          "navigationBarTitleText": "支付结果"
+        }
+      },
+      {
+        "path": "recharge",
+        "style": {
+          "navigationBarTitleText": "充值余额"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "充值余额",
+          "group": "支付"
+        }
+      },
+      {
+        "path": "recharge-log",
+        "style": {
+          "navigationBarTitleText": "充值记录"
+        },
+        "meta": {
+          "auth": true,
+          "sync": true,
+          "title": "充值记录",
+          "group": "支付"
+        }
+      }
+    ]
+  }],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "航兴充电桩",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#444",
+    "selectedColor": "#037AFB",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "iconPath": "static/icons/tab-bar/16480@2x.png",
+      "selectedIconPath": "static/icons/tab-bar/16481@2x.png",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/redirect/index",
+      "iconPath": "static/icons/tab-bar/16570@2x.png"
+    }, {
+      "pagePath": "pages/my/index",
+      "iconPath": "static/icons/tab-bar/16136@2x.png",
+      "selectedIconPath": "static/icons/tab-bar/16479@2x.png",
+      "text": "我的"
+    }]
+  }
+}

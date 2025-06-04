@@ -1,0 +1,148 @@
+
+$count: 200;
+$loadingHeadColor: hsl(130, 75%, 75%);
+$loadingEndColor: hsl(60, 75%, 40%);
+.ljs-loading{
+	--speed: 3; // 圆环
+	--gaussian: 10; // 高斯模糊
+	--bgopacity: 0.9; // 背景透明度
+	--textcolor: '#FFF'; // 字体颜色
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10001;
+	background-color: rgba($color: #000000, $alpha: var(--bgopacity));
+	display: grid;
+	place-content: center;
+	overflow: hidden;
+	.text{
+		text-align: center;
+		padding: 100upx;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: var(--textcolor);
+	}
+	.g-container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		// padding: 100upx;
+		filter: blur(calc(var(--gaussian) * 1upx)) contrast(3);
+		animation: hueRotate 8s infinite linear;
+		.g-circle {
+			position: relative;
+			width: 300upx;
+			height: 300upx;
+			border-radius: 50%;
+			background: conic-gradient($loadingHeadColor 0,
+			$loadingHeadColor 2%,
+			hsl(120, 75%, 70%),
+			hsl(110, 75%, 65%),
+			hsl(100, 75%, 60%),
+			hsl(90, 75%, 55%),
+			hsl(80, 75%, 50%),
+			hsl(70, 75%, 45%),
+			$loadingEndColor 16%,
+			$loadingEndColor 18%,
+			transparent 18%);
+			// background-image: radial-gradient(transparent, transparent 119upx, #000 120upx, #000);
+			-webkit-mask: radial-gradient(transparent, transparent 119upx, #000 120upx, #000);
+			mask: radial-gradient(transparent, transparent 119upx, #000 120upx, #000);
+			animation: rotate calc(var(--speed)*1s) infinite calc(700 / 4 * var(--speed) * -1ms) linear;
+
+			&::before,
+			&::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				width: 32upx;
+				height: 32upx;
+				background: $loadingHeadColor;
+				top: 0;
+				left: 135upx;
+				border-radius: 50%;
+			}
+
+			&::after {
+				background: $loadingEndColor;
+				left: unset;
+				top: 80upx;
+				right: 10upx;
+			}
+		}
+
+		.g-bubbles {
+			position: absolute;
+			width: 30upx;
+			height: 30upx;
+			transform: translate(-50%, -50%);
+			left: 50%;
+			top: 50%;
+			border-radius: 50upx;
+		}
+
+		.g-bubble {
+			position: absolute;
+			border-radius: 50%;
+			background: $loadingEndColor;
+		}
+
+		@for $i from 1 through $count {
+			.g-bubble:nth-child(#{$i}) {
+				--rotate: calc(#{360 / $count} * #{$i} * 1deg);
+				--delayTime: calc(var(--speed) * 1000 * #{$i / $count} * -1ms);
+				--width: 30upx;
+				--scale: #{0.4 + random(10) / 10};
+				--x: #{-100 + random(200)}upx;
+				--y: #{-100 + random(200)}upx;
+				width: var(--width);
+				height: var(--width);
+				transform:
+				rotateZ(var(--rotate)) translate(135upx, 0);
+				opacity: 1;
+				animation: showAndHide calc(var(--speed)*1000ms) linear var(--delayTime) infinite;
+			}
+		}
+
+		@keyframes showAndHide {
+			0% {
+				transform:
+				rotateZ(var(--rotate)) translate(135upx, 0);
+				opacity: 0;
+			}
+
+			75% {
+				opacity: 0;
+			}
+
+			75.1% {
+				transform:
+				rotateZ(var(--rotate)) translate(135upx, 0) scale(var(--scale));
+				opacity: 1;
+			}
+
+			100% {
+				transform:
+				rotateZ(var(--rotate)) translate(calc(135upx + var(--x)), var(--y)) scale(.2);
+				opacity: 0;
+			}
+		}
+
+		@keyframes rotate {
+			100% {
+				transform: rotate(-360deg);
+			}
+		}
+
+		@keyframes hueRotate {
+			100% {
+				filter: blur(calc(var(--gaussian) * 1upx)) contrast(3) hue-rotate(360deg);
+			}
+		}
+	}
+}
+

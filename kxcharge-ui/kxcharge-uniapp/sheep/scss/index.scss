@@ -1,0 +1,64 @@
+@import './tools';
+@import './ui';
+
+/* 字体文件 */
+@font-face {
+  font-family: OPPOSANS;
+  src: url('~@/sheep/scss/font/OPPOSANS-M-subfont.ttf');
+}
+.font-OPPOSANS {
+  font-family: OPPOSANS;
+}
+page {
+  -webkit-overflow-scrolling: touch; // 解决ios滑动不流畅
+  height: 100%;
+  width: 100%;
+  // font-family: OPPOSANS;
+  word-break: break-all; //英文文本不换行
+  white-space: normal;
+  background-color: $bg-page;
+  color: $dark-3;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+  view,
+  scroll-view,
+  swiper,
+  swiper-item,
+  cover-view,
+  cover-image,
+  icon,
+  text,
+  rich-text,
+  progress,
+  button,
+  checkbox,
+  form,
+  input,
+  label,
+  radio,
+  slider,
+  switch,
+  textarea,
+  navigator,
+  audio,
+  camera,
+  image,
+  video {
+    box-sizing: border-box;
+    font-family: PingFang SC;
+  }
+  
+  image {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+  }
+  
+  image+text {
+    vertical-align: middle;
+  }
